@@ -6,7 +6,7 @@ import eventRouter from "./routers/event.router"
 import TRouter from "./routers/transaction.router"
 import ProRouter from "./routers/profile.router"
 import ctrRouter from "./routers/ctr.router"
-
+import { scheduleTask } from "./cron/schedule"
 const app : Application = express ()
 
 const PORT : number = 5670
@@ -14,6 +14,8 @@ const PORT : number = 5670
 app.use(cors())
 app.use(express.urlencoded({extended :false}))
 app.use(express.json())
+
+scheduleTask()
 
 app.use("/api/auth", authRouter)
 app.use("/api/event", eventRouter)

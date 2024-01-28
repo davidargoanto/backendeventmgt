@@ -37,7 +37,7 @@ export async function createEvent( req : Request, res : Response){
 
             }
         })
-        console.log(createEvents.id)
+
         const updateUser = await prisma.user.update({
             where :{id : userID},
             data :{
@@ -93,7 +93,7 @@ export async function getOneEvent(req : Request, res : Response){
         const year = date.getFullYear() 
         const ym = year.toString() + "/" +month.toString()
         const ymd = ym + "/"+ day.toString()
-        const {eventid} = req.body
+        const {eventid, userID} = req.body
 
         console.log(req.body)
         const getEventData = await prisma.event.findUnique({
